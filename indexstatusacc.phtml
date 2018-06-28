@@ -1,0 +1,485 @@
+<?php if($this->css==1):?>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<?php Endif?>
+<style>
+.solid-green{background:#008000; color:#FFFFFF; font-weight:bold; padding:4px; text-align:center; } 
+</style>
+
+
+<head>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=ISO-8859-1">
+<title>Mapa de Google</title>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyDnwf4VhvviyT0U34GbeOt7_EMlSdQLaHg"
+        type="text/javascript"></script>
+</head>
+
+<?php if($this->error and !$this->primerstatus):?>
+<table><tr>
+<td><div class="solid-green"><?php echo$this->error;?></div></td>
+</tr></table>
+<?php endif;?>
+ <form action="<?= $this->escape($this->status->getAction()) ?>"     method = "<?= $this->escape($this->status->getMethod()) ?>">
+  <div class="row col-xs-12 col-md-8 col-lg-8">
+    <div class="col-xs-12 col-md-8 col-lg-8">
+       <div class="panel panel-primary">            
+          <div class="panel-heading">Consulte Su Guia o Tracking #</div>
+             <div class="panel-body">
+                <div class="form-body"> 
+                     <div class="form-group">
+                            <label for="" class="control-label col-xs-1 col-md-12 col-lg-12">#GUIA</label>
+                                <div class="col-xs-12 col-md-12 col-lg-12 ">                           
+                                    <input type="text"   maxlength="255" autofocus name="numguia"  class='form-control'  required value="<?php echo$this->num?>"  />
+                           </div>
+                     </div>
+                      <div class="form-group">
+                            <label for="" class="control-label col-xs-1 col-md-12 col-lg-12">Rastreo</label>
+                                <div class="col-xs-12 col-md-12 col-lg-12 ">                           
+                                  <select class='form-control' name="track">
+                                        <option>Opcional Rastreo</option>
+                                        <option value="1">Usps</option>
+                                        <option value="1">Ups</option>
+                                        <option value="1">Fedex</option>
+                                        <option value="1">Amazon</option>
+                                        <option value="1">Otros</option>
+                                   </select>
+                           </div>
+                     </div>  
+                     <?php if(!$this->css==1):?>
+                       <div class="form-group">
+                            <label for="" class="control-label col-xs-1 col-md-12 col-lg-12">PORCENTAJE</label>
+                                <div class="col-xs-12 col-md-12 col-lg-12 ">                           
+                                   <dt><strong style="color:#F90; font-size: 20px;"><?php if(sizeof($this->guia)>0){echo$this->guia[0]->getporcentaje();}else{if(sizeof($this->consostatus)>0){echo$this->consostatus[0]->getporcentaje();}}?>%</strong></dt>
+		
+		    <?php if(sizeof($this->guia)>0):?>
+			<?php if($this->guia[0]->getporcentaje()==100):?>
+			<img alt="" src="<?=$this->baseUrl()?>/imagenes/casillero/completo.png">		    
+			<?php else:?>
+			<dd>
+			<span>
+			<em style="left:<?php echo$this->guia[0]->getporcentaje()*2;?>px">100%</em>
+			</span>
+		     </dd>
+			<?php endif;?>
+			<?php else:?>			
+			<?php if(sizeof($this->consostatus)>0):?>
+			<?php if($this->consostatus[0]->getporcentaje()==100):?>			
+			<img alt="" src="<?=$this->baseUrl()?>/imagenes/casillero/completo.png">
+			<?php else:?>
+			<dd>
+			<span>
+			<em style="left:<?php echo$this->consostatus[0]->getporcentaje()*2;?>px">100%
+			</em>
+			</span>
+		     </dd>			
+			<?php endif;?>
+			<?php endif;?>
+			<?php endif;?>
+                </div>
+             </div>
+ <?php endif;?> 
+          <div class="form-group last">
+               <label for="" class="control-label col-xs-12 col-md-1 col-lg-12"><?php echo$this->translate('');?></label>                                     
+               <div class="col-xs-12 col-md-12 col-lg-12 "><br>
+                    <button type="submit" name="button" class="btn btn-success">RASTREO DE CARGA</button>
+              </div>
+          </div>      
+                                            
+               </div>
+            </div>
+         </div>
+     </div>           
+  </div>
+ </form> 
+  
+ 
+<?php if($this->track):?>
+<?php $funciones=new Application_Model_DbTable_funciones();
+if($track=$funciones->whereAction('app\models\bodega_status','bodega',$this->track->getbodega()->getid())){
+	if($track->getguia()){
+	$guia=$track->getguia()->getnumguia();
+	}
+}
+?>
+<table class="table table-condensed" border="0" cellpadding="0" cellspacing="0"  >
+    <tr class="titulos2" bgcolor="#CCCCCC">
+    <td width="" class="">Track</td>
+     <td width="" class=""><strong>Status</strong></td>
+    <td width="" class=""><strong>Fecha</strong></td>
+    <td width="" class="">Destino</td>
+    <td width="" class="">Rastreo</td>
+    </tr>
+    <tr class="titulos2" bgcolor="">
+    <td width="" class=""><?php echo$this->track->gettrack();?></td>
+    <td width="" class=""><strong><?php echo"RECIBIDO EN BODEGA";?></strong></td>
+    <td width="" class=""><strong><?php echo$this->track->getfecha()->format('Y-m-d');?></strong></td>
+    <td width="" class=""><?php if($this->track->getbodega())echo$this->track->getbodega()->getreceiverpais();?></td>
+    <td width="" class=""><?php if($guia):?>
+           <a href="<?php echo$this->url(array('controller'=>'indexstatus', 
+            'action'=>'indexstatusacc','module'=>'status','guia'=>$guia));?>" class="links" style="color:#393">Continuar Rastreo</a>
+            <?php else:?>
+            Pendiete por despachar
+            <?php Endif;?></td>
+    </tr>
+<?php endif;?> 
+
+ <?php if (sizeof($this->guia) > 0 or $this->primerstatus or sizeof($this->consostatus) > 0 or $this->bodega):?>
+            <table class="table table-condensed" >
+                        <tr class="success"  bgcolor="#CCCCCC">
+                        <td width="" class="">Guia</td>
+                        <td width="" class=""><strong>Status</strong></td>
+                        <td width="" class=""><strong>Fecha</strong></td>
+                        <td width="" class=""><strong>Comentarios</strong></td>                       
+                         <td width="" class="">Opcional</td>                        
+                      </tr>
+                      <?php if (sizeof($this->bodega) > 0) : ?>
+                      <tr>
+                      <?php foreach ($this->bodega as $user4) : ?>
+                        <td class=""><?php  echo$user4->getbodega()->getnumerorecibo();?></td>
+                        <td class=""><?php echo $user4->getestadotipo()->getname(); ?></td>
+                        <td class=""><?php echo $user4->getfecha()->format("Y-m-d H:i:s"); ?></td>
+                        <td class=""><?php echo $user4->getcomments(); ?></td>
+                     <td>N/A</td>
+                      <?php endforeach;?>
+                      </tr>
+                      <?php endif;?>
+                      
+                       <?php if (sizeof($this->guia) > 0) : ?>
+                       <?php foreach ($this->guia as $user4) : ?>
+                        <tr class="" bgcolor="#ffffff">
+                        <td class=""><?php echo $user4->getguia()->getnumguia() ?></td>
+                        <td class=""><?php echo $user4->getestadotipo()->getname(); ?></td>
+                        <td class=""><?php echo $user4->getfecha()->format("Y-m-d H:i:s");?></td>
+                        <td class=""><?php echo $user4->getcomments(); ?></td>
+                         <td style=" font-size:11px; color:#F00">
+                         <?php if($user4->gettrack()){echo'<a target="_blank" href="'.$user4->getlink()->getlink().$user4->gettrack().'">'.$user4->gettrack().'(Ver)</a><br>'.$user4->getlink()->getname();}else{echo"N/A";}?>
+                         <?php if($user4->getimagen()):?>
+                         <br>[<a target="_blank" href="<?=$this->baseUrl()?>/imagenes/rastreo/pruebaentrega/<?php echo$user4->getimagen();?>">Prueba</a>]
+                          [<a target="_blank" href="<?=$this->baseUrl()?>/imagenes/rastreo/firma/<?php echo$user4->getguia()->getnumguia();?>.jpeg">Firma</a>]
+                         <?php endif;?>
+                         </td>
+                          	     
+                        </tr>
+                      <?php endforeach; ?>
+                     <?php endif; ?>
+                     <!-- inicio del status de consolidado si no hay en guia-->
+
+                    <?php if (sizeof($this->invomadre) > 0) : ?>
+                       <?php foreach ($this->invomadre as $user4) : ?>
+                       <tr class="" bgcolor="#ffffff">
+                       <td class=""><?php  echo$user4->getguia()->getnumguia();?></td>
+                        <td class=""> <a target="new" href="<?php echo $this->url(array('controller'=>'indexstatus', 
+                                                'action'=>'indexstatusacc','module'=>'status','guia'=>$user4->getguia()->getnumguia()));?>" class="links" style="color:#393">Rastreo detallado</a></td>
+                        <td class=""><?php //echo $user4->geteventdate(); ?></td>
+                        <td class=""><?php // echo $user4->getcomments(); ?></td>                      
+                      </tr>
+                    <?php endforeach; ?>  
+                       <?php endif; ?>
+                       
+                     <?php if (sizeof($this->consostatus) > 0) : ?>
+                       <?php foreach ($this->consostatus as $user4) : ?>
+                       <tr class="" bgcolor="#ffffff">
+                       <td class=""><?php  echo $this->guianumero->getguia()->getnumguia();?></td>
+                        <td class=""><?php echo $user4->getestadotipo()->getname(); ?>
+                        <?php if($this->user==1):?>
+                          [<a href="<?=$this->baseUrl()?>/status/addconsostatus/editstatusconso/id/<?php echo$user4->getid();?>" target="parent">Edit</a>]       
+                        <?php endif;?>  
+                        </td>
+                        <td class=""><?php echo $user4->geteventdate()->format("Y-m-d H:i:s"); ?>                             
+                        </td>
+                        <td class=""><?php echo $user4->getcomments(); ?></td>                      
+                     <td>N/A</td>
+                      </tr>
+                    <?php endforeach; ?> 
+                     
+                     <?php endif; ?>
+                     <?php if (sizeof($this->primerstatus) > 0) : ?>
+                        <tr class="" bgcolor="#ffffff">
+                       <td class=""><?php echo $this->primerstatus->getnumguia() ?></td>
+                        <td class=""><?php echo"Recibido en agencia";?></td>
+                        <td class=""><?php echo $this->primerstatus->getfechapago() ?></td>
+                        <td class=""><?php echo "N/A"; ?></td>                      
+                        <td style=" font-size:11px; color:#F00"><?php echo"N/A";?></td> 	     
+                        </tr>
+                       <?php endif;?>        
+                 </table>
+                 <?php endif;?>  
+                                  
+                 <?php $funciones=new Application_Model_DbTable_funciones();?>
+                  <?php if (sizeof($this->consoawr) > 0 or $this->consobodega) : ?>
+                  <table class="table table-condensed" border="1" cellpadding="3" cellspacing="0" >
+                    
+                      <tr class="titulos2" bgcolor="#CCCCCC">
+                        <td width="" class="">WHR</td>
+                        <td width="" class="">AWR</td>
+                        <td width="" class=""><strong>Status</strong></td>
+                        <td width="" class=""><strong>Fecha</strong></td>
+                        <td width="" class=""><strong>Comentarios</strong></td>
+                        <td width="" class="">Destino</td>
+                        <td width="" class="">Porcentaje</td>
+                         <td width="" class="">Opcional</td>
+                        
+                      </tr>
+                      <?php if (sizeof($this->consobodega) > 0): ?>
+                    <?php foreach ($this->consobodega as $user4):?>
+                    
+                    <tr class="" bgcolor="#ffffff">
+                        <td class=""><?php echo$this->ware;?></td>
+                        <td width="" class=""><?php //echo$user4->getawr()->getname();?></td>
+                        <td class=""><?php echo$user4->getestadotipo()->getname();?></td>
+                        <td class=""><?php echo$user4->geteventdate()->format("Y-m-d H:i:s");?></td>
+                        <td class=""><?php echo$user4->getcomments();?></td>
+                        <td class=""><?php echo$user4->getconsolidate()->getcountry()->getnamepais(); ?></td>
+                     <td><strong style="color:#F90; font-size: 20px;"><?php echo$user4->getporcentaje();?>%</strong></td>
+                     
+                     <td>N/A</td>
+                      </tr>
+                 <?php endforeach;?>
+             <?php endif; ?>
+             
+                     <!-- ************SOLO AWR INDIVIDUAL CUANDO EL STATUS ES UNICO -->
+                     <?php if($this->awrsolo):?>
+                     <?php if($awr_solo=$funciones->wheremultipleASC('app\models\guia_status','awr',$this->awrsolo->getid())):?>
+                      <?php foreach ($awr_solo as $user7):?>
+                      <tr class="" bgcolor="#ffffff">
+                        <td style="text-align:center"><?php echo$user7->getawr()->getbodega()->getnumerorecibo();?><br>
+                        <?php if($user7->getimagen()):?>
+                         <a href="<?=$this->baseUrl()?>/imagenes/rastreo/<?php echo$user7->getimagen();?>" target="parent">
+                        <img   src="<?=$this->baseUrl()?>/imagenes/rastreo/cam1.jpg" >
+                        </a>
+                       <?php endif;?>
+                        </td>
+                        <td width="" class=""><?php echo$user7->getawr()->getname();?></td>
+                        <td class=""><?php echo$user7->getestadotipo()->getname();?>
+                         <?php if($this->user==1):?>
+                          [<a href="<?=$this->baseUrl()?>/status/indexstatus/editstatusawr/id/<?php echo$user7->getid();?>" target="parent">Edit</a>]       
+                        <?php endif;?>     
+                        </td>
+                        <td class=""><?php echo$user7->getfecha()->format("Y-m-d H:i:s");?></td>
+                        <td class=""><?php echo$user7->getcomments();?></td>
+                        <td class=""><?php echo$user7->getestadotipo()->getcountry()->getnamepais();?></td>
+                    <td><strong style="color:#F90; font-size: 20px;"><?php echo$user7->getporcentaje();?>%</strong></td>
+                     
+                     <td><?php if($user7->gettrack()){if($user7->getlink()){echo'<a target="_blank" href="'.$user7->getlink()->getlink().$user7->gettrack().'">'.$user7->gettrack().'(Ver)</a><br>'.$user7->getlink()->getname();}}else{echo"N/A";}?></td>
+                      </tr>
+                  
+                      <?php endforeach;?>
+                      <?php endif;?>
+                      <?php endif;?>
+                     <!-- ************SOLO AWR INDIVIDUAL CUANDO EL STATUS ES UNICO -->                    
+                    
+                    <?php if($this->guiaawr):?>
+                        <?php foreach ($this->guiaawr as $user7):?>
+                      <tr class="" bgcolor="#ffffff">
+                        <td class=""><?php echo$user7->getawr()->getbodega()->getnumerorecibo();?></td>
+                        <td width="" class=""><?php echo$user7->getawr()->getname();?></td>
+                        <td class=""><?php echo$user7->getestadotipo()->getname();?></td>
+                        <td class=""><?php echo$user7->getfecha()->format("Y-m-d H:i:s");?></td>
+                        <td class=""><?php echo$user7->getcomments();?></td>
+                        <td class=""></td>
+                     <td><strong style="color:#F90; font-size: 20px;"><?php echo$user7->getporcentaje();?>%</strong></td>                     
+                     <td><?php if($user7->gettrack()){if($user7->getlink()){echo'<a target="_blank" href="'.$user7->getlink()->getlink().$user7->gettrack().'">'.$user7->gettrack().'(Ver)</a><br>'.$user7->getlink()->getname();}}else{echo"N/A";}?></td>
+                      </tr>
+                      <?php endforeach;?>
+                      <?php endif;?>             
+                             
+                         <!-- inicio del warehouse de consolidado si no hay en guia-->
+                                             
+                       <?php foreach ($this->consoawr as $user4) : ?> 
+                       <?php if($status=$funciones->wheremultipleASC('app\models\consolidate_status','consolidate',$user4->getconsolidate()->getid())):?>
+                       <?php foreach ($status as $user5):?>
+                      
+                      <!-- ************INICIO AWR INDIVIDUAL 
+                      <?php //if($awr_solo=$funciones->wheremultipleASC('app\models\guia_status','awr',$user4->getawr()->getid())):?>
+                      <?php //foreach ($awr_solo as $user7):?>
+                      <tr class="" bgcolor="#ffffff">
+                        <td class=""><?php //echo$user7->getawr()->getbodega()->getnumerorecibo();?></td>
+                        <td width="" class=""><?php //echo$user7->getawr()->getname();?></td>
+                        <td class=""><?php //echo$user7->getestadotipo()->getname();?></td>
+                        <td class=""><?php //echo$user7->getfecha();?></td>
+                        <td class=""><?php //echo$user7->getcomments();?></td>
+                        <td class=""><?php //echo$user5->getconsolidate()->getcountry()->getnamepais(); ?></td>
+                     <td><strong style="color:#F90; font-size: 20px;"><?php //echo$user7->getporcentaje();?>%</strong></td>                     
+                     <td>N/A</td>
+                      </tr>-->
+                      <?php //endforeach;?>
+                      <?php //endif;?>                      
+                      
+                        <tr class="" bgcolor="#ffffff">
+                        <td class=""><?php echo$user4->getawr()->getbodega()->getnumerorecibo();?></td>
+                        <td width="" class=""><?php echo$user4->getawr()->getname();?></td>
+                        <td class=""><?php echo$user5->getestadotipo()->getname();?></td>
+                        <td class=""><?php echo$user5->geteventdate()->format("Y-m-d H:i:s");?></td>
+                        <td class=""><?php echo$user5->getcomments();?></td>
+                        <td class=""><?php echo$user5->getconsolidate()->getcountry()->getnamepais(); ?></td>
+                     <td><strong style="color:#F90; font-size: 20px;"><?php echo$user5->getporcentaje();?>%</strong></td>                     
+                     <td>N/A</td>
+                      </tr>                      
+                      <!-- ************INICIO AWR INDIVIDUAL -->                      
+                      <?php endforeach;?>
+                       <?php endif;?>                      
+                    <?php endforeach; ?> 
+            </table>
+             <?php endif; ?>
+              </div>	</div>          	
+        </td></tr></table>
+<body>
+<div id="map" style="width: 480px; height: 600px"></div>
+</body>        
+<style>
+/* DEFINITION LIST PROGRESS BAR */
+dd{
+	width:216px;
+	height:41px;
+	background:url(<?=$this->baseUrl()?>/imagenes/bg_bar.gif) no-repeat 0 0;
+	position:relative;
+}
+dd span{
+	position:absolute;
+	display:block;
+	width:200px;
+	height:25px;
+	background:url(<?=$this->baseUrl()?>/imagenes/bar.gif) no-repeat 0 0;
+	top:8px;
+	left:8px;
+	overflow:hidden;
+	text-indent:-8000px;
+}
+dd em{
+	position:absolute;
+	display:block;
+	width:200px;
+	height:25px;
+	background:url(<?=$this->baseUrl()?>/imagenes/bg_cover.gif) repeat-x;
+	top:0;
+}
+
+
+/* SINGLE PROGRESS BAR */
+
+.progressBar{
+	width:216px;
+	height:41px;
+	background:url(<?=$this->baseUrl()?>/imagenes/bg_bar.gif) no-repeat 0 0;
+	position:relative;
+}
+.progressBar span{
+	position:absolute;
+	display:block;
+	width:200px;
+	height:25px;
+	background:url(<?=$this->baseUrl()?>/imagenes/bar.gif) no-repeat 0 0;
+	top:8px;
+	left:8px;
+	overflow:hidden;
+	text-indent:-8000px;
+}
+.progressBar em{
+	position:absolute;
+	display:block;
+	width:200px;
+	height:25px;
+	background:url(<?=$this->baseUrl()?>/imagenes/bg_cover.gif) repeat-x 0 0;
+	top:0;
+}
+
+</style>
+
+
+ <?php //GUARDAMOS EN UN ARREGLO LO QUE VAMOS A INSERTAR EN EL MAPA
+          if (sizeof($this->consostatus) > 0){
+  		  foreach ($this->consostatus as $user4){$i=$i+1; 
+			$arreglo[]='var ciudad'.$i.'= new GLatLng('.$user4->getestadotipo()->getcordenadas().');';
+			$pais=$user4->getestadotipo()->getcountry()->getcordenadas();    //cordenadas del pais para central el mapa               
+  		   }                     
+		 }
+		 
+		 if (sizeof($this->guia) > 0){
+  		  foreach ($this->guia as $user4){$i1=$i1+1; 
+			$arreglo1[]='var ciudad'.$i.'= new GLatLng('.$user4->getestadotipo()->getcordenadas().');';
+			$pais=$user4->getestadotipo()->getcountry()->getcordenadas();    //cordenadas del pais para central el mapa               
+  		   }                     
+		 }
+          
+        	      
+	      ?>
+
+<?php if (sizeof($this->consostatus) > 0 or sizeof($this->guia) > 0 ):?>
+<script type="text/javascript">
+
+function load() {
+	if (GBrowserIsCompatible()) {
+		var map = new GMap2(document.getElementById("map"));	
+
+		  map.setCenter(new GLatLng(<?php echo$pais?>),4);
+
+		 //controles 
+		  map.addControl(new GMapTypeControl());
+	      map.addControl(new GSmallZoomControl());
+	      map.addControl(new GScaleControl());
+	      map.addControl(new GOverviewMapControl());
+	      map.setMapType(G_NORMAL_MAP);//tipo mapa
+          //fin de controles
+
+
+<?php if($finalstatus=='Entregado'):?>
+
+
+var geocoder = new GClientGeocoder();
+
+address='<?php echo$finaldireccion;?>';
+  geocoder.getLatLng(
+    address,
+    function(point) {
+      if (!point) {
+        alert(address + " not found");
+      } else {
+        map.setCenter(point, 13);
+        var marker = new GMarker(point);
+        map.addOverlay(marker);
+
+        // As this is user-generated content, we display it as
+        // text rather than HTML to reduce XSS vulnerabilities.
+        marker.openInfoWindow(document.createTextNode(address));
+      }
+    }
+  );
+
+  <?php else:?>   	      
+          //marcas iconos
+	      <?php  foreach ($this->consostatus as $user4){$mk=$mk+1; 
+			echo $marca[]='var marker'.$mk.'= new GMarker(new GLatLng('.$user4->getestadotipo()->getcordenadas().'));
+			map.addOverlay(marker'.$mk.');';                   
+		   }  
+	      
+	      ?>
+
+	      <?php  foreach ($this->guia as $user4){$mk=$mk+1; 
+			echo $marca[]='var marker'.$mk.'= new GMarker(new GLatLng('.$user4->getestadotipo()->getcordenadas().'));
+			map.addOverlay(marker'.$mk.');';                   
+		   }  
+	      
+	      ?>
+	      
+		  //fin iconos marcas
+		  
+		var opciones_poligono = {geodesic:true};
+		<?php		
+				foreach ($arreglo as $user5){ 
+					        
+						   echo $user5;                   
+		  		         }   
+		  		      ?> 
+		var polyline = new GPolyline([<?php $num=0;foreach($arreglo as $user5){$num=$num+1;echo'ciudad'.$num.',';}?>
+		<?php foreach($arreglo1 as $user5){echo'ciudad'.$num.',';$num=$num+1;}?>
+		], "#f00000", 4, 0.6, opciones_poligono);
+		map.addOverlay(polyline);
+
+<?php endif;?> 		
+		
+	}
+}
+
+window.onload=load;
+
+</script>
+<?php endif;?>      

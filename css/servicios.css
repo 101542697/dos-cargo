@@ -1,0 +1,251 @@
+@import url(menu.css);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+}
+html{
+    font-family: 'Raleway', sans-serif;
+}
+h2{
+    font-size: 17px;
+    font-weight: 600;
+}
+a{
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 400;
+}
+p{
+    color: #727171;
+    line-height: 1.7em;
+    font-size: 16px;
+}
+h1{
+    color: #6069A6;
+    text-align: center;
+    font-size: 21px;
+}
+img{
+    width: 100%;
+}
+a{
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+}
+ul, ol{
+    list-style:none;
+}
+.header{
+    margin-top: 50px;
+}
+.header-escritorio{
+    margin-top: 25px;
+}
+.header-escritorio h1{
+    position: relative;
+    color: white;
+    top: 130px;
+    left: 150px;
+    font-size: 70px;
+    width: 600px;
+    text-align: left;
+}
+.header-escritorio img{
+    margin-top: -165px;
+}
+.tu-casillero{
+    text-align: left;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+.tu-casillero h1{
+    text-align: left;
+    padding-top: 47px;
+    padding-bottom: 21px;
+ 
+}
+.tu-casillero h2{
+    padding-bottom: 25px;
+}
+.tu-casillero p{
+    
+}
+.botones{
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35px;
+    margin-bottom: 40px;
+}
+.botones img{
+    width: 40px;
+    height: 40px;
+    margin: 25px;
+    padding: 5px;
+    border-radius: 10%;
+    box-shadow: 1px 1px 6px grey;
+    box-sizing: content-box;
+}
+.botones img:hover{
+    background-color: #F1F2F2
+}
+.botones ul{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+footer{
+    width: 100%;
+    height: auto;
+}
+.footer{
+    text-align: center;
+    padding-top: 10px;
+}
+.footer img{
+    width: 32px;
+    margin: 10px;
+}
+footer{
+    background-color: #2D3989;
+}
+.derechos p{
+    text-align: center;
+    color: white;
+    font-size: 11px;
+    padding: 10px;
+    padding-bottom: 30px;
+}
+.desarrollo{
+    background-color: #F2F3F8;
+    text-align: center;
+}
+.desarrollo p{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+}
+@media (min-width:2px){
+    .header-escritorio{
+        display: none;
+    }
+    .header{
+        display: block;
+    }
+    .logo-footer{
+        display: none;
+    }
+    .footer h2{
+        display: none;
+    }
+}
+@media(min-width:768px){
+     p{
+        font-size: 18px;
+    }
+    h1{
+        font-size: 35px;
+    }
+    a{
+        font-size: 15px;
+    }
+    h2{
+        font-size: 15px;
+        font-weight: 600;
+    }
+}
+@media (min-width:1024px){
+    p{
+        font-size: 15px;
+    }
+    h1{
+        font-size: 20px;
+    }
+    h2{
+        font-size: 25px;
+        font-weight: 600;
+    }
+    a{
+        font-size: 15px;
+    }
+    .derechos p{
+        font-size: 14px
+    }
+    .desarrollo p{
+        font-size: 14px;
+    }
+    .header-escritorio{
+        display: block;
+    }
+    .header{
+        display: none;
+    }
+    .logo-footer{
+        display: block;
+        float: left;
+    }
+    .logo-footer img{
+        width: 152px;
+        height: auto;
+        margin-left: 84px;
+        margin-top: 25px;;
+        margin-bottom: auto;
+    }
+    .tu-casillero{
+        max-width: 900px;
+    }
+    .tu-casillero h1{
+        display: none;
+    }
+    .tu-casillero h2{
+        padding-top: 100px;
+        font-weight: 500
+    }
+    .footer{
+        height: 173px;
+        margin-top: 30px;
+    }
+    .footer h2{
+        display: block;
+        color: white;
+        float: right;
+        margin-right: 140px;
+        margin-top: 40px;
+        font-size: 15px;
+        font-weight: 300;
+    }
+    .footer p{
+        margin-top: 75px;
+    }
+    .footer-sociales{
+        float: right;
+        margin-top: 70px;
+        margin-right: -115px;
+    }
+}
+@media (min-width:1600px){
+    .footer{
+        width: 1600px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header-escritorio{
+        margin-top: 61px;
+        width: 1600px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

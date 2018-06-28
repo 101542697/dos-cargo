@@ -1,0 +1,486 @@
+@import url(menu.css);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+}
+html{
+    font-family: 'Raleway', sans-serif;
+}
+p{
+    color: #727171;
+    line-height: 1.7em;
+    font-size: 16px;
+}
+h1{
+    color: #6069A6;
+    text-align: center;
+    font-size: 21px;
+}
+img{
+    width: 100%;
+}
+a{
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+}
+ul, ol{
+    list-style:none;
+}
+
+.header-slider{
+    margin-top: 50px;
+}
+.botones{
+    margin-top: -20px;
+}
+.botones ul{
+    float: left; 
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    margin-top: -40px;
+    background-color: #EFEFEF;
+    height: 133px;
+    margin-bottom: 20px;
+}
+.botones a{
+    margin-top: auto;
+    margin-bottom: auto;
+    margin: 1%;
+}
+.botones li{
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: auto;
+}
+.botones img{
+    width: 26px;
+    height: 26px;
+    margin-bottom: 5px;
+    border-radius: 10%;
+    box-shadow: 1px 1px 6px grey;
+    box-sizing: content-box;
+    background-color: white;
+    padding: 5px;
+}
+.botones p{
+    color="#727171";
+    font-size: 13px;
+    line-height: 1.2em;
+    width: 90px;
+}
+.medida-iframe{
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    text-align: center;
+}
+iframe{
+    width: 100%;
+    background-color: transparent;
+    height: 270px;
+}
+button{
+    border: none;
+    margin-top: -15px;
+    padding: 0px;
+    height: 0px;
+}
+#medida-especial{
+    margin-right: 10px;
+    margin-left: -35px;
+}
+#servicios h1{
+    padding: 20px;
+}
+.tu-casillero{
+    text-align: center;
+}
+.tu-casillero img{
+    padding-bottom: 22px;
+}
+.tu-casillero p{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+.tu-casillero a{
+    color: #CC2128;
+    padding-bottom: 10px;
+}
+.asesoramos{
+    text-align: center;
+}
+.asesoramos img{
+    padding-bottom: 22px;
+    padding-top: 30px;
+}
+.asesoramos p{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+.asesoramos a{
+    color: #CC2128;
+    padding-bottom: 10px;
+}
+.compramos{
+    text-align: center;
+}
+.compramos img{
+    padding-bottom: 22px;
+    padding-top: 30px;
+}
+.compramos p{
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+}
+.compramos a{
+    color: #CC2128;
+    padding-bottom: 10px;
+}
+.tiendas-fondo{
+    background-color: #F2F3F8;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    height: 135px;
+    margin-bottom: 20px;
+}
+.tiendas h1{
+    padding-top: 75px;
+    padding-bottom: 25px;
+}
+.tiendas-fondo img{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    margin-top: 10px;
+}
+.tiendas .bx-wrapper .bx-prev {
+    left: 10px;
+    top: 40px;
+    background: url(../images/slider/left-arrow.png) no-repeat 
+}
+.tiendas .bx-wrapper .bx-next {
+    right: 10px;
+    top: 40px;
+    background:url(../images/slider/right-arrow.png) no-repeat;
+}
+.tiendas .bx-wrapper .bx-pager.bx-default-pager a{
+    display: none;
+}
+.tiendas-escritorio{
+    background-color: #F2F3F8;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    float: left;
+    width: 100%;
+    height: 227px;
+}
+.tiendas-escritorio h1{
+    background-color: white;
+    padding-bottom: 40px;
+    padding-top: 30px;
+    margin-top: -30px;
+}
+.tiendas-escritorio img{
+    width: 255px;
+}
+.tiendas-escritorio ul{
+    display: flex;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+}
+footer{
+    width: 100%;
+    height: auto;
+}
+.footer{
+    text-align: center;
+    padding-top: 10px;
+}
+.footer img{
+    width: 32px;
+    margin: 10px;
+}
+footer{
+    background-color: #2D3989;
+}
+.derechos p{
+    text-align: center;
+    color: white;
+    padding: 10px;
+    padding-bottom: 30px;
+    font-size: 11px;
+}
+.desarrollo{
+    background-color: #F2F3F8;
+    text-align: center;
+}
+.desarrollo p{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+}
+@media (min-width:2px){
+    .tiendas-escritorio{
+        display: none;
+    }
+    .tiendas{
+        display: block;
+    }
+    .logo-footer{
+        display: none;
+    }
+    .footer h2{
+        display: none;
+    }
+}
+@media(min-width:768px){
+     p{
+        font-size: 18px;
+    }
+    h1{
+        font-size: 35px;
+    }
+    a{
+        font-size: 15px;
+    }
+    .tiendas-fondo img{
+       width: 255px;
+    }
+    .botones li{
+        margin-top: 10px;
+    }
+    .botones p{
+        width: 150px;
+    }
+}
+@media (min-width:1024px){
+    button{
+        margin-top: -5px;
+        margin-left: 15px;
+    }
+    .botones li{
+        margin-top: 60px;
+    }
+    p{
+        font-size: 14px;
+    }
+    h1{
+        font-size: 20px;
+    }
+    a{
+        font-size: 15px;
+    }
+    .derechos p{
+        font-size: 14px
+    }
+    .desarrollo p{
+        font-size: 14px;
+    }
+    .botones li{
+        border-radius: 2%;
+        box-shadow: 1px 1px 6px grey;
+        box-sizing: content-box;
+        background-color: white;
+        float: left;
+        width: 300px;
+        margin-left: 2%;
+    }
+    .botones img{
+        background-color: transparent;
+        box-shadow: none;
+        float: left;
+        padding-left:18px;
+        width: 40px;
+        height: 40px;
+    }
+    .botones p{
+        font-size: 15px;
+        margin-top: 20px;
+        float: left;
+        margin-left: 28px;
+    }
+    .botones li:hover{
+        background-color: #F1F2F2;
+    }
+    .botones ul{
+        background-color: white;
+        height: 212px;
+    }
+    #servicios h1{
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .servicios-sub{
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        margin-bottom: 90px;
+    }
+    .servicios-sub img{
+        margin-bottom: -30px;
+    }
+    .txt h1{
+        text-transform: uppercase;
+    }
+    .tu-casillero{
+        margin: 20px;
+        margin-top: 0px;
+        border-radius: 2%;
+        box-shadow: 1px 1px 6px grey;
+        box-sizing: content-box;
+        background-color: white;
+        max-width: 360px;
+        height: 400px;
+    }
+    .tu-casillero h1{
+        text-align: left;
+    }
+    .tu-casillero p{
+        text-align: left;
+        padding-left: 20px;
+    }
+    .tu-casillero a{
+        float: right;
+        margin-right: 22px;
+        font-size: 12px;
+        margin-top: 0px
+    }
+    .asesoramos{
+        margin: 20px;
+        margin-top: 0px;
+        border-radius: 2%;
+        box-shadow: 1px 1px 6px grey;
+        box-sizing: content-box;
+        background-color: white;
+        max-width: 360px;
+        height: 400px;
+    }
+    .asesoramos img{
+        padding-top: 0px;
+    }
+    .asesoramos h1{
+        text-align: left;
+    }
+    .asesoramos p{
+        text-align: left;
+        padding-left: 20px;
+    }
+    .asesoramos a{
+        font-size: 12px;
+        margin-top: 0px;
+        float: right;
+        margin-right: 22px;
+    }
+    .compramos{
+        margin: 20px;
+        margin-top: 0px;
+        border-radius: 2%;
+        box-shadow: 1px 1px 6px grey;
+        box-sizing: content-box;
+        background-color: white;
+        width: 360px;
+        height: 400px;
+    }
+    .compramos img{
+        padding-top: 0px;
+    }
+    .compramos h1{
+        text-align: left;
+    }
+    .compramos p{
+        text-align: left;
+        padding-left: 20px;
+    }
+    .compramos a{
+        font-size: 12px;
+        margin-top: 0px;
+        float: right;
+        margin-right: 22px;
+    }
+    .tiendas-escritorio{
+        display: block;
+        text-transform: uppercase;
+    }
+    .tiendas{
+        display: none;
+    }
+    .logo-footer{
+        display: block;
+        float: left;
+    }
+    .logo-footer img{
+        width: 152px;
+        height: auto;
+        margin-left: 84px;
+        margin-top: 25px;;
+        margin-bottom: auto;
+    }
+    .footer{
+        height: 173px;
+        margin-top: 340px;
+    }
+    .footer h2{
+        display: block;
+        color: white;
+        float: right;
+        margin-right: 140px;
+        margin-top: 40px;
+        font-size: 15px;
+        font-weight: 300;
+    }
+    .footer p{
+        margin-top: 75px;
+    }
+    .footer-sociales{
+        float: right;
+        margin-top: 70px;
+        margin-right: -115px;
+    }
+}
+@media (min-width:1600px){
+    .footer{
+        width: 1600px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header-slider{
+        width: 1600px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .botones{
+        width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #servicios{
+        width: 1600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

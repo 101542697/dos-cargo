@@ -1,0 +1,326 @@
+@import url(menu.css);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    margin: 0px;
+}
+html{
+    font-family: 'Raleway', sans-serif;
+}
+p{
+    color: #727171;
+    line-height: 1.7em;
+    font-size: 16px;
+}
+h1{
+    color: #6069A6;
+    text-align: center;
+    font-size: 21px;
+}
+img{
+    width: 100%;
+}
+a{
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+}
+ul, ol{
+    list-style:none;
+}
+input[type=text], select, textarea, date {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */  
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical; /* Allow the user to vertically resize the textarea (not horizontally) */
+    border-color: transparent;
+    border-bottom-color: lightgray;
+    border-bottom-width: 1px;
+    background-color: transparent;
+    font-size: 14px;
+    color:  #727171;
+}
+/* Style the submit button with a specific background color etc */
+input[type=submit]{
+    color: white;
+    border-color: transparent;
+    padding: 5px 20px;
+    background-color:  #CC2128;
+    border-radius: 8%;
+    box-shadow: 1px 1px 6px grey;
+    box-sizing: content-box;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover{
+    background-color:
+}
+.header-formualrio{
+    display: none;
+}
+.formulario{
+    margin-top: 50px;
+    width: 80%;
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+.medida2{
+    margin-bottom: 50px;
+    margin-top: -30px;
+}
+.header{
+    margin-top: 50px;
+}
+.info-contacto{
+    text-align: left;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    margin-top: 65px;
+}
+.info-contacto h1{
+    text-align: left;
+    padding-top: 47px;
+    padding-bottom: 21px;
+}
+.info-contacto h2{
+    font-size: 17px;
+    font-weight: 600;
+    padding-bottom: 25px;
+    color: #CC2128;
+}
+.info-contacto p{
+    
+}
+.botones{
+    text-align: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 35px;
+    margin-bottom: 40px;
+}
+.botones img{
+    width: 20px;
+    height: 20px;
+    margin: 15px;
+}
+.botones ul{
+    text-align: center;
+    justify-content: center;
+}
+.mapa{
+    margin-bottom: -4px;
+}
+footer{
+    width: 100%;
+    height: auto;
+}
+.footer{
+    text-align: center;
+    padding-top: 10px;
+}
+.footer img{
+    width: 32px;
+    margin: 10px;
+}
+footer{
+    background-color: #2D3989;
+}
+.derechos p{
+    text-align: center;
+    color: white;
+    font-size: 11px;
+    padding: 10px;
+    padding-bottom: 30px;
+}
+.desarrollo{
+    background-color: #F2F3F8;
+    text-align: center;
+}
+.desarrollo p{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 12px;
+}
+@media (min-width:2px){
+    .header-escritorio{
+        display: none;
+    }
+    .header{
+        display: block;
+    }
+    .logo-footer{
+        display: none;
+    }
+    .footer h2{
+        display: none;
+    }
+}
+@media(min-width:768px){
+    .header-formualrio{
+        display: block;
+        background-color: blue;
+    }
+    .header-formualrio img{
+        width: 40px;
+    }
+     p{
+        font-size: 18px;
+    }
+    h1{
+        font-size: 35px;
+    }
+    a{
+        font-size: 15px;
+    }
+    .formulario{
+        margin-top: 100px;
+        margin-right: 10%;
+        border-radius: 2%;
+        box-shadow: 1px 1px 6px grey;
+        box-sizing: content-box;
+    }
+    .formulario form{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .header-formualrio{
+        display: block;
+        background-color: #2D3989;
+        height: 90px;
+        margin-bottom: 55px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+    .header-formualrio h1{
+        color: white;
+        font-weight: 400;
+        padding-top: 27px;
+        text-align: left;
+    }
+    .header-formualrio img{
+        width: 40px;
+        float: left;
+        margin: 17px;
+        margin-left: 50px;
+    }
+}
+@media (min-width:1024px){
+    p{
+        font-size: 14px;
+    }
+    h1{
+        font-size: 20px;
+    }
+    a{
+        font-size: 15px;
+    }
+    .derechos p{
+        font-size: 14px
+    }
+    .desarrollo p{
+        font-size: 14px;
+    }
+    .header-escritorio{
+        display: block;
+    }
+    .header{
+        display: none;
+    }
+    .logo-footer{
+        display: block;
+        float: left;
+    }
+    .logo-footer img{
+        width: 152px;
+        height: auto;
+        margin-left: 84px;
+        margin-top: 25px;;
+        margin-bottom: auto;
+    }
+    .info-contacto h1{
+        font-size: 45px;
+    }
+    .info-contacto h2{
+        font-size: 25px;
+    }
+    .botones{
+        float: left;
+        margin-left: 10%;
+        margin-top: -150px;
+    }
+    .botones ul{
+        width: 350px;
+        margin-left: 15%;
+        margin-right: auto;
+    }
+    .contacto{
+        margin-top: 160px;
+        width: 30%;
+        margin-right: 15%;
+        padding-top: 20px;
+    }
+    input[type=submit]{
+        margin-left: 70%;
+        margin-top: 120px;
+    }
+    .footer{
+        height: 173px;
+    }
+    .footer h2{
+        display: block;
+        color: white;
+        float: right;
+        margin-right: 140px;
+        margin-top: 40px;
+        font-size: 15px;
+        font-weight: 300;
+    }
+    .footer p{
+        margin-top: 75px;
+    }
+    .footer-sociales{
+        float: right;
+        margin-top: 70px;
+        margin-right: -115px;
+    }
+    .medida{
+        margin-top: 250px;
+    }
+}
+@media (min-width:1600px){
+    .footer{
+        width: 1600px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .medida{
+        width: 1600px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .medida2{
+        width: 1600px;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
